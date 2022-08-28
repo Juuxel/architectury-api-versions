@@ -1,14 +1,68 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --background: #F2F2F2;
+        --text-color: #222222;
+        --card-background: #EEEEEE;
+        --card-header-background: #3A3A3A;
+        --card-header-border: #3A3A3A;
+        --card-header-color: #F2F2F2;
+        --card-border: #BBBBBB;
+        --button-border: #BBBBBB;
+        --button-background: #EEEEEE;
+        --button-active-background: #DDDDDD;
+        --button-inactive-color: #BBBBBB;
+        --button-border: #BBBBBB;
+        --made-by-color: #888888;
+        --link-color: #1e88e5;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #282828;
+        --text-color: #F2F2F2;
+        --card-background: #333333;
+        --card-header-background: #1C1C1C;
+        --card-header-border: #1C1C1C;
+        --card-header-color: #F2F2F2;
+        --card-border: #1A1A1A;
+        --button-background: #333333;
+        --button-active-background: #404040;
+        --button-inactive-color: #888888;
+        --button-border: #1A1A1A;
+        --made-by-color: #888888;
+        --link-color: #42a5f5;
+    }
+}
+
 body {
     margin-left: auto;
     margin-right: auto;
     width: 30em;
-    background-color: #F2F2F2;
-    color: #222222;
+    background-color: var(--background);
+    color: var(--text-color);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 h1 {
     font-weight: 400;
+}
+
+button {
+    background-color: var(--button-background);
+    color: var(--text-color);
+    border: solid 1px;
+    border-radius: 0.3em;
+    border-color: var(--button-border)
+}
+
+button:hover {
+    background-color: var(--button-active-background);
+}
+
+button:disabled {
+    background-color: var(--button-background);
+    color: var(--button-inactive-color);
 }
 
 .button-holder {
@@ -18,7 +72,7 @@ h1 {
 }
 
 .version-button {
-    padding: 0.4em;
+    padding: 0.6em;
     user-select: none;
 }
 
@@ -31,7 +85,7 @@ h1 {
 }
 
 #version-holder a:link, #version-holder a:visited {
-    color: #1e88e5;
+    color: var(--link-color);
 }
 
 .version-box {
@@ -43,24 +97,26 @@ h1 {
 
 .loader-name {
     padding: 0.6em 0.6em 0.3em;
-    background-color: #3A3A3A;
-    color: #F2F2F2;
+    background-color: var(--card-header-background);
+    color: var(--card-header-color);
     border-radius: 0.3em 0.3em 0 0;
     font-weight: 600;
+    border: solid 0.1em;
+    border-color: var(--card-header-border) var(--card-header-border) transparent;
 }
 
 .version {
     padding: 0.3em 0.6em 0.6em;
-    background-color: #EEEEEE;
+    background-color: var(--card-background);
     border-radius: 0 0 0.3em 0.3em;
     border: solid 0.1em;
-    border-color: transparent #BBBBBB #BBBBBB;
+    border-color: transparent var(--card-border) var(--card-border);
 }
 
 .spinner {
     width: 0.5em;
     height: 0.5em;
-    background-color: black;
+    background-color: var(--text-color);
     border-radius: 50%;
 
     animation-name: spinner;
@@ -81,7 +137,7 @@ h1 {
 }
 
 .made-by {
-    color: #888888;
+    color: var(--made-by-color);
 }
 
 .tater {
