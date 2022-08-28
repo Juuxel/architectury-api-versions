@@ -118,6 +118,7 @@ button:disabled {
     height: 0.5em;
     background-color: var(--text-color);
     border-radius: 50%;
+    transform: translateX(-1.5em);
 
     animation-name: spinner;
     animation-duration: 400ms;
@@ -128,11 +129,11 @@ button:disabled {
 
 @keyframes spinner {
     from {
-        transform: translateX(0);
+        transform: translateX(-1.5em);
     }
 
     to {
-        transform: translateX(3em);
+        transform: translateX(1.5em);
     }
 }
 
