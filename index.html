@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src="script.js"></script>
+<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+<h1>architectury API versions</h1>
+<p>Select your Minecraft version:</p>
+<div class="button-holder">
+    <button type="button" class="version-button" onclick="fetchVersions('1.16.5')">1.16.5</button>
+    <button type="button" class="version-button" onclick="fetchVersions('1.17.1')">1.17.1</button>
+    <button type="button" class="version-button" onclick="fetchVersions('1.18.2')">1.18.2</button>
+    <button type="button" class="version-button" onclick="fetchVersions('1.19')">1.19</button>
+    <button type="button" class="version-button" onclick="fetchVersions('1.19.2')">1.19.2</button>
+</div>
+
+<div id="version-holder"></div>
+<p class="made-by">
+    made with <img src="tater.png" alt="tater" class="tater"> by <a href="https://github.com/Juuxel">juuz</a>
+</p>
+</body>
+
+</html>
