@@ -1,3 +1,11 @@
+const curseforgeGameVersions = {
+    '1.16.5': '8203',
+    '1.17.1': '8516',
+    '1.18.2': '9008',
+    '1.19':   '9186',
+    '1.19.2': '9366',
+}
+
 function fetchVersions(minecraft) {
     const request = new XMLHttpRequest();
     request.onload = () => applyVersions(request, minecraft);
@@ -31,6 +39,7 @@ function applyVersions(request, minecraft) {
         .sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
 
     removeByClassName("spinner");
+    addVersionBox("CurseForge", "All versions for " + minecraft, "curseforge", "https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/all?filter-status=1&filter-game-version=2020709689%3A" + curseforgeGameVersions[minecraft]);
     addLoader(sorted, "Fabric", "fabric");
     addLoader(sorted, "Forge", "forge");
     addLoader(sorted, "Quilt", "quilt");
@@ -56,17 +65,21 @@ function addLoader(versions, name, id) {
     if (filtered.length == 0) return;
 
     const version = filtered[0];
+    addVersionBox(name + " \u2013 Modrinth", version.name, "modrinth", "https://modrinth.com/mod/architectury-api/version/" + version.id);
+}
+
+function addVersionBox(title, versionName, id, link) {
     const versionBox = document.createElement("div");
     versionBox.classList.add("version-box");
     const loaderName = document.createElement("span");
-    loaderName.classList.add("loader-name");
+    loaderName.classList.add("card-header");
     loaderName.classList.add(id);
-    loaderName.textContent = name;
+    loaderName.textContent = title;
     versionBox.append(loaderName);
     const versionElement = document.createElement("a");
     versionElement.classList.add("version");
-    versionElement.textContent = version.name;
-    versionElement.href = "https://modrinth.com/mod/architectury-api/version/" + version.id;
+    versionElement.textContent = versionName;
+    versionElement.href = link;
     versionBox.append(versionElement);
     document.getElementById("version-holder").append(versionBox);
 }

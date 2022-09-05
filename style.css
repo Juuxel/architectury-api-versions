@@ -94,7 +94,7 @@ button:disabled {
     text-align: center;
 }
 
-.loader-name {
+.card-header {
     padding: 0.6em 0.6em 0.3em;
     background-color: var(--card-header-background);
     color: var(--card-header-color);
