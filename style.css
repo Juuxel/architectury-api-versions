@@ -75,12 +75,25 @@ button:disabled {
     user-select: none;
 }
 
-#version-holder {
+#spinner-holder {
     display: flex;
-    gap: 0.6em;
-    margin: 1em 0;
     justify-content: center;
-    flex-wrap: wrap;
+    margin-top: 1em;
+}
+
+#version-holder {
+    --columns: 2;
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-gap: 0.6em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+#version-holder.threecolumns {
+    --columns: 3;
 }
 
 #version-holder a:link, #version-holder a:visited {
@@ -90,18 +103,30 @@ button:disabled {
 .version-box {
     display: flex;
     flex-direction: column;
-    width: max-content;
     text-align: center;
 }
 
+.version-box.curseforge {
+    grid-column-end: span var(--columns);
+}
+
 .card-header {
-    padding: 0.6em 0.6em 0.3em;
+    padding: 0.6em 0.6em 0.4em;
     background-color: var(--card-header-background);
     color: var(--card-header-color);
     border-radius: 0.3em 0.3em 0 0;
     font-weight: 600;
     border: solid 0.1em;
     border-color: var(--card-header-border) var(--card-header-border) transparent;
+    border-bottom-width: 0.4ex;
+}
+
+.curseforge .card-header {
+    border-bottom-color: #ef6c00;
+}
+
+.modrinth .card-header {
+    border-bottom-color: #00c853;
 }
 
 .version {

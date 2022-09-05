@@ -19,7 +19,7 @@ function fetchVersions(minecraft) {
     // Create spinner
     const spinner = document.createElement("div");
     spinner.classList.add("spinner");
-    document.getElementById("version-holder").append(spinner);
+    document.getElementById("spinner-holder").append(spinner);
 
     // Disable buttons
     const buttons = document.getElementsByClassName("version-button");
@@ -42,7 +42,11 @@ function applyVersions(request, minecraft) {
     addVersionBox("CurseForge", "All versions for " + minecraft, "curseforge", "https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/all?filter-status=1&filter-game-version=2020709689%3A" + curseforgeGameVersions[minecraft]);
     addLoader(sorted, "Fabric", "fabric");
     addLoader(sorted, "Forge", "forge");
-    addLoader(sorted, "Quilt", "quilt");
+    if (addLoader(sorted, "Quilt", "quilt")) {
+        document.getElementById("version-holder").classList.add("threecolumns");
+    } else {
+        document.getElementById("version-holder").classList.remove("threecolumns");
+    }
 
     // Re-enable buttons
     const buttons = document.getElementsByClassName("version-button");
@@ -62,18 +66,19 @@ function removeByClassName(className) {
 
 function addLoader(versions, name, id) {
     const filtered = versions.filter(version => version.loaders.includes(id));
-    if (filtered.length == 0) return;
+    if (filtered.length == 0) return false;
 
     const version = filtered[0];
-    addVersionBox(name + " \u2013 Modrinth", version.name, "modrinth", "https://modrinth.com/mod/architectury-api/version/" + version.id);
+    addVersionBox(name, version.name, "modrinth", "https://modrinth.com/mod/architectury-api/version/" + version.id);
+    return true;
 }
 
 function addVersionBox(title, versionName, id, link) {
     const versionBox = document.createElement("div");
     versionBox.classList.add("version-box");
+    versionBox.classList.add(id);
     const loaderName = document.createElement("span");
     loaderName.classList.add("card-header");
-    loaderName.classList.add(id);
     loaderName.textContent = title;
     versionBox.append(loaderName);
     const versionElement = document.createElement("a");
