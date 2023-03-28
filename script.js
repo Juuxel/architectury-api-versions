@@ -5,6 +5,7 @@ const curseforgeGameVersions = {
     '1.19':   '9186',
     '1.19.2': '9366',
     '1.19.3': '9550',
+    '1.19.4': '9776',
 }
 
 function fetchVersions(minecraft) {
