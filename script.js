@@ -1,13 +1,3 @@
-const curseforgeGameVersions = {
-    '1.16.5': '8203',
-    '1.17.1': '8516',
-    '1.18.2': '9008',
-    '1.19':   '9186',
-    '1.19.2': '9366',
-    '1.19.3': '9550',
-    '1.19.4': '9776',
-}
-
 function fetchVersions(minecraft) {
     const request = new XMLHttpRequest();
     request.onload = () => applyVersions(request, minecraft);
@@ -41,7 +31,7 @@ function applyVersions(request, minecraft) {
         .sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
 
     removeByClassName("spinner");
-    addVersionBox("CurseForge", "All versions for " + minecraft, "curseforge", "https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/all?filter-status=1&filter-game-version=2020709689%3A" + curseforgeGameVersions[minecraft]);
+    addVersionBox("CurseForge", "All versions for " + minecraft, "curseforge", "https://www.curseforge.com/minecraft/mc-mods/architectury-api/files?version=" + minecraft);
     addLoader(sorted, "Fabric", "fabric");
     addLoader(sorted, "Forge", "forge");
     if (addLoader(sorted, "Quilt", "quilt")) {
